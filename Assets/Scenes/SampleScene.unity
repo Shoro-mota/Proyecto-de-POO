@@ -11258,6 +11258,7 @@ GameObject:
   - component: {fileID: 742170242}
   - component: {fileID: 742170241}
   - component: {fileID: 742170245}
+  - component: {fileID: 742170246}
   m_Layer: 3
   m_Name: skate
   m_TagString: Player
@@ -11488,6 +11489,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   jumpForce: 6
+--- !u!114 &742170246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742170238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191b4011f781e03428005e70d4ffe15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748093295
 GameObject:
   m_ObjectHideFlags: 0
@@ -16720,8 +16733,9 @@ EdgeCollider2D:
   - {x: 0.09608002, y: -0.33675596}
   - {x: 0.25671196, y: -0.21924229}
   - {x: 0.39142874, y: -0.08365603}
-  - {x: 0.4923111, y: 0.022112079}
-  - {x: 0.5159555, y: 0.05585153}
+  - {x: 0.42781615, y: -0.03046273}
+  - {x: 0.46148092, y: 0.022112079}
+  - {x: 0.52965456, y: 0.16203572}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -18027,7 +18041,7 @@ Transform:
   m_GameObject: {fileID: 1076341778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.912636, y: -0.48, z: 0.045640796}
+  m_LocalPosition: {x: -31.16, y: -0.48, z: 0.045640796}
   m_LocalScale: {x: 5.1349, y: 5.1349, z: 5.1349}
   m_ConstrainProportionsScale: 0
   m_Children: []
