@@ -4956,7 +4956,7 @@ Transform:
   m_GameObject: {fileID: 294825507}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.54, y: 1.31, z: 0.045640796}
+  m_LocalPosition: {x: 13.74, y: 1.31, z: 0.045640796}
   m_LocalScale: {x: 4.093761, y: 4.093761, z: 4.093761}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5052,6 +5052,7 @@ EdgeCollider2D:
   - {x: -0.75, y: -0.4702829}
   - {x: -0.7443458, y: -0.2759112}
   - {x: -0.62409836, y: -0.21190566}
+  - {x: -0.3652802, y: -0.14528267}
   - {x: -0.38033113, y: -0.13934584}
   - {x: -0.2513097, y: -0.00092996657}
   - {x: 0.43292707, y: -0.00088870525}
@@ -11271,8 +11272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bc3c7f220c364469363dba30b255ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  fixedYPosition: 0
 --- !u!1 &742170238
 GameObject:
   m_ObjectHideFlags: 0
@@ -16749,9 +16748,11 @@ EdgeCollider2D:
   - {x: -0.056157216, y: -0.4362471}
   - {x: 0.09608002, y: -0.33675596}
   - {x: 0.25671196, y: -0.21924229}
-  - {x: 0.39142874, y: -0.08365603}
-  - {x: 0.4923111, y: 0.022112079}
-  - {x: 0.5159555, y: 0.05585153}
+  - {x: 0.3840592, y: -0.08119992}
+  - {x: 0.45156473, y: 0.0020916788}
+  - {x: 0.472663, y: 0.034392618}
+  - {x: 0.5626217, y: 0.14181507}
+  - {x: 0.5626213, y: 0.14181507}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -18157,9 +18158,9 @@ EdgeCollider2D:
   - {x: 0.05540286, y: -0.35499784}
   - {x: 0.14520414, y: -0.30239436}
   - {x: 0.22528684, y: -0.23746154}
-  - {x: 0.29780245, y: -0.1798558}
-  - {x: 0.36752024, y: -0.10903612}
-  - {x: 0.44483253, y: 0.000000014901161}
+  - {x: 0.2809922, y: -0.17565295}
+  - {x: 0.34230337, y: -0.10273195}
+  - {x: 0.44273162, y: 0.052535187}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -19591,7 +19592,7 @@ Transform:
   m_GameObject: {fileID: 1168591191}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.85263, y: 1.2620022, z: 0.045640796}
+  m_LocalPosition: {x: -24.85263, y: 1, z: 0.045640796}
   m_LocalScale: {x: 4.107953, y: 3.8536513, z: 2.7169}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28137,6 +28138,7 @@ GameObject:
   - component: {fileID: 1741861278}
   - component: {fileID: 1741861279}
   - component: {fileID: 1741861280}
+  - component: {fileID: 1741861281}
   m_Layer: 0
   m_Name: obs7 (3)
   m_TagString: Untagged
@@ -28256,6 +28258,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8116997, y: 0.4806161}
   m_EdgeRadius: 0
+--- !u!68 &1741861281
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741861277}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.7812463, y: 0.13322097}
+  - {x: -0.3338651, y: 0.2294361}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1753365785
 GameObject:
   m_ObjectHideFlags: 0
