@@ -75,8 +75,8 @@ public class PlayerGyro : MonoBehaviour
                         // Aplicar un umbral para evitar rotaciones pequeñas no deseadas
                         if (Mathf.Abs(adjustedRotationY) > rotationThreshold)
                         {
-                            // Crear una rotación incremental basada en el giro detectado en el eje Y
-                            Quaternion rotationDelta = Quaternion.Euler(0, 0, adjustedRotationY);
+                            // Crear una rotación incremental, pero ahora la diferencia será negativa para invertir el giro
+                            Quaternion rotationDelta = Quaternion.Euler(0, 0, -adjustedRotationY); // Resta para invertir la rotación
 
                             // Actualizar la rotación acumulada multiplicando por la nueva rotación
                             currentRotation *= rotationDelta;
