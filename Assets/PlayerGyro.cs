@@ -7,9 +7,6 @@ public class PlayerGyro : MonoBehaviour
     // Ajusta el puerto serie según el que estés usando
     SerialPort serialPort = new SerialPort("COM7", 9600);
 
-    // Variable para almacenar la rotación acumulada en el eje Z
-    private float accumulatedRotationZ = 0f;
-
     // Variable pública para ajustar la sensibilidad de la rotación
     public float sensitivity = 1.0f; // Sensibilidad inicial (puedes cambiarla en el Inspector de Unity)
 
@@ -42,11 +39,10 @@ public class PlayerGyro : MonoBehaviour
                         // Ajustar la sensibilidad multiplicando por el factor de sensibilidad
                         float adjustedRotationY = rotationY * sensitivity;
 
-                        // Acumular la rotación en el eje Z (sumar o restar según el valor recibido del giroscopio)
-                        accumulatedRotationZ += adjustedRotationY;
-
-                        // Aplicar la rotación acumulada al objeto utilizando un quaternion
-                        transform.rotation = Quaternion.Euler(0, 0, accumulatedRotationZ); // Solo rota en el eje Z
+                        // Aplicar la rotación al objeto utilizando un quaternion.
+                        // La rotación ahora solo depende de la lectura del giroscopio en el eje Y.
+                        // El eje Z de Unity se actualiza con el valor ajustado de rotaciónY.
+                        transform.rotation = Quaternion.Euler(0, 0, adjustedRotationY); // Rota solo en el eje Z
                     }
                     else
                     {
