@@ -6,8 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public float playerSpeed;
     public float jumpForce;
+
     private bool isGrounded;
     private Rigidbody2D rb;
+
+    [Header("Gyroscope Settings")]
+    public PlayerGyro gyro; // Referencia al script PlayerGyro
+    public float maxTiltAngle = 30f; // Límite de inclinación para el skate
 
     private void Start()
     {
@@ -21,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        // Aplica la inclinación del giroscopio al skate
+        ApplyGyroTilt();
     }
 
     void FixedUpdate()
@@ -31,21 +39,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        // Aplica una fuerza vertical para el salto
-        rb.velocity = new Vector2(rb.velocity.x, 0); // Resetea la velocidad vertical antes de aplicar la fuerza
+        rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-        isGrounded = false; // Asegura que no se pueda saltar nuevamente hasta que aterrice
+        isGrounded = false;
+    }
+
+    private void ApplyGyroTilt()
+    {
+        if (gyro != null)
+        {
+            float tiltAngle = Mathf.Clamp(gyro.currentInclination, -maxTiltAngle, maxTiltAngle);
+            transform.rotation = Quaternion.Euler(0, 0, tiltAngle);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verifica si el jugador está tocando el suelo
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
     }
 }
-
-
-
