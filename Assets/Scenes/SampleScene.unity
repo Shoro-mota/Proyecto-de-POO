@@ -11748,6 +11748,7 @@ MonoBehaviour:
   smoothingFactor: 0.1
   rotationThreshold: 0.2
   resetTime: 1
+  readInterval: 0.1
   currentInclination: 0
 --- !u!114 &742170247
 MonoBehaviour:
