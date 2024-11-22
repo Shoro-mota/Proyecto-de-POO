@@ -11744,8 +11744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8a5a6c4a2335a4a99b88cbbb09dada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.5
-  smoothingFactor: 0.1
+  sensitivity: 0.3
+  smoothingFactor: 0.125
   rotationThreshold: 0.2
   resetTime: 1
   readInterval: 0.1
