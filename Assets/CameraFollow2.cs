@@ -7,6 +7,7 @@ public class controlador : MonoBehaviour
     public GameObject personaje;  // El objeto a seguir
     private Vector3 posicionRelativa;
     public float ejeYFijo;        // Altura fija de la cámara en el eje Y
+    public float smoothSpeed = 0.125f; // Velocidad de suavizado
 
     // Use this for initialization
     void Start()
@@ -25,7 +26,7 @@ public class controlador : MonoBehaviour
         Vector3 nuevaPosicion = personaje.transform.position + posicionRelativa;
         nuevaPosicion.y = ejeYFijo;
 
-        // Actualiza la posición de la cámara
-        transform.position = nuevaPosicion;
+        // Suaviza la transición de la cámara
+        transform.position = Vector3.Lerp(transform.position, nuevaPosicion, smoothSpeed);
     }
 }
