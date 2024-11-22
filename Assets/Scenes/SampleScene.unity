@@ -11746,7 +11746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 0.5
   smoothingFactor: 0.1
-  rotationThreshold: 0.125
+  rotationThreshold: 0.2
   resetTime: 1
   readInterval: 0.05
   currentInclination: 0
