@@ -5,7 +5,7 @@ using System.Collections;  // Agregado para IEnumerator
 
 public class PlayerGyro : MonoBehaviour
 {
-    SerialPort serialPort = new SerialPort("COM3", 9600);
+    SerialPort serialPort = new SerialPort("COM7", 9600);
 
     [Header("Gyroscope Settings")]
     public float sensitivity = 1.0f;
