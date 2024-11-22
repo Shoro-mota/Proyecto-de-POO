@@ -86,7 +86,7 @@ public class PlayerGyro : MonoBehaviour
                         previousRotationY = smoothedRotationY;
                     }
 
-                    if (int.TryParse(data[7], out int buttonState)) // Cambiado de data[8] a data[7]
+                    if (int.TryParse(data[7], out int buttonState))  //boton en 7
                     {
                         isButtonPressed = buttonState == 1; // Asigna true si es 1
                     }

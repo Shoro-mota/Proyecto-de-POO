@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     [Header("Gyroscope Settings")]
-    public PlayerGyro gyro; // Referencia al script PlayerGyro
+    //public PlayerGyro gyro; // Referencia al script PlayerGyro
     public float maxTiltAngle = 30f;
 
     private void Start()
@@ -37,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("El botón no está presionado");
             }
         }
+        else
+        {
+            Debug.Log("sin gyro");
+
+        }
         ApplyGyroTilt();
     }
 
@@ -54,9 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGyroTilt()
     {
-        if (gyro != null)
+        if (playerGyro != null)
         {
-            float tiltAngle = Mathf.Clamp(gyro.currentInclination, -maxTiltAngle, maxTiltAngle);
+            float tiltAngle = Mathf.Clamp(playerGyro.currentInclination, -maxTiltAngle, maxTiltAngle);
             transform.rotation = Quaternion.Euler(0, 0, tiltAngle);
         }
     }

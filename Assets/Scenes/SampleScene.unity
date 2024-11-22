@@ -11766,11 +11766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a469ddd424c0fb749a5a7d62c0427951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGyro: {fileID: 0}
+  playerGyro: {fileID: 742170246}
   playerSpeed: 4
   jumpForce: 8
   speedMultiplier: 2
-  gyro: {fileID: 742170246}
   maxTiltAngle: 45
 --- !u!114 &742170248
 MonoBehaviour:
