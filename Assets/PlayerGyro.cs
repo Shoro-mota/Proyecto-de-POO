@@ -8,9 +8,9 @@ public class PlayerGyro : MonoBehaviour
     SerialPort serialPort = new SerialPort("COM7", 9600);
 
     [Header("Gyroscope Settings")]
-    public float sensitivity = 1.0f;
-    public float smoothingFactor = 0.05f; // Suavizado más sutil para evitar lag
-    public float rotationThreshold = 0.01f;
+    public float sensitivity = 0.5f;
+    public float smoothingFactor = 0.1f; // Suavizado más sutil para evitar lag
+    public float rotationThreshold = 0.125f;
     public float resetTime = 1.0f;
     public float readInterval = 0.05f; // Más frecuente, pero con menor impacto
     private float smoothedRotationY = 0f;
