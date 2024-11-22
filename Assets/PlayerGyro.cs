@@ -28,46 +28,7 @@ public class PlayerGyro : MonoBehaviour
 
     void Update()
     {
-        if (serialPort.IsOpen)
-        {
-            try
-            {
-                string value = serialPort.ReadLine();
-                string[] data = value.Split(',');
-
-                if (data.Length == 8 && float.TryParse(data[3], out float rotationY))
-                {
-                    if (initialRotationY == 0f)
-                    {
-                        initialRotationY = rotationY;
-                    }
-
-                    float deltaRotationY = rotationY - initialRotationY;
-                    smoothedRotationY = Mathf.Lerp(previousRotationY, deltaRotationY, smoothingFactor);
-
-                    if (Mathf.Abs(smoothedRotationY) > rotationThreshold)
-                    {
-                        currentInclination = smoothedRotationY * sensitivity;
-                        timeSinceLastMovement = 0f;
-                    }
-                    else
-                    {
-                        timeSinceLastMovement += Time.deltaTime;
-                    }
-
-                    if (timeSinceLastMovement >= resetTime)
-                    {
-                        currentInclination = 0f;
-                        timeSinceLastMovement = 0f;
-                    }
-
-                    previousRotationY = smoothedRotationY;
-                }
-            }
-            catch (TimeoutException) { }
-        }
-
-        // Si la tecla CTRL está presionada, se restablecen todos los ejes a 0
+        // Si la tecla CTRL está presionada, se resetean todos los ejes a 0
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             // Mantenemos la rotación en 0 mientras CTRL está presionado
@@ -75,7 +36,48 @@ public class PlayerGyro : MonoBehaviour
         }
         else
         {
-            // Si no se presiona CTRL, aplicamos la rotación calculada por el giroscopio
+            // Si no se presiona CTRL, leemos los datos del giroscopio
+            if (serialPort.IsOpen)
+            {
+                try
+                {
+                    string value = serialPort.ReadLine();
+                    string[] data = value.Split(',');
+
+                    // Solo procesamos si los datos tienen el formato esperado
+                    if (data.Length == 8 && float.TryParse(data[3], out float rotationY))
+                    {
+                        if (initialRotationY == 0f)
+                        {
+                            initialRotationY = rotationY;
+                        }
+
+                        float deltaRotationY = rotationY - initialRotationY;
+                        smoothedRotationY = Mathf.Lerp(previousRotationY, deltaRotationY, smoothingFactor);
+
+                        if (Mathf.Abs(smoothedRotationY) > rotationThreshold)
+                        {
+                            currentInclination = smoothedRotationY * sensitivity;
+                            timeSinceLastMovement = 0f;
+                        }
+                        else
+                        {
+                            timeSinceLastMovement += Time.deltaTime;
+                        }
+
+                        if (timeSinceLastMovement >= resetTime)
+                        {
+                            currentInclination = 0f;
+                            timeSinceLastMovement = 0f;
+                        }
+
+                        previousRotationY = smoothedRotationY;
+                    }
+                }
+                catch (TimeoutException) { }
+            }
+
+            // Aplicamos la rotación calculada por el giroscopio (cuando no se presiona CTRL)
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, currentInclination);
         }
     }
