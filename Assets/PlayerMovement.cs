@@ -3,6 +3,7 @@ using System.Collections; // Necesario para la corutina
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerGyro playerGyro;
     public float playerSpeed;  // Velocidad normal
     public float jumpForce;
     public float speedMultiplier = 2f;  // Factor de multiplicación para la velocidad
@@ -24,7 +25,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
+        if (playerGyro != null)
+        {
+            if (playerGyro.isButtonPressed)
+            {
+                Jump();
+                Debug.Log("El botón está presionado");
+            }
+            else
+            {
+                Debug.Log("El botón no está presionado");
+            }
+        }
         ApplyGyroTilt();
     }
 
@@ -33,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
     }
 
-    private void Jump()
+    public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);

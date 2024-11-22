@@ -8,15 +8,17 @@ public class PlayerGyro : MonoBehaviour
     SerialPort serialPort = new SerialPort("COM7", 9600);
 
     [Header("Gyroscope Settings")]
-    public float sensitivity = 0.5f;
-    public float smoothingFactor = 0.1f; // Suavizado más sutil para evitar lag
-    public float rotationThreshold = 0.125f;
+    public float sensitivity = 1.0f;
+    public float smoothingFactor = 0.05f; // Suavizado más sutil para evitar lag
+    public float rotationThreshold = 0.01f;
     public float resetTime = 1.0f;
     public float readInterval = 0.05f; // Más frecuente, pero con menor impacto
     private float smoothedRotationY = 0f;
     private float previousRotationY = 0f;
     private float timeSinceLastMovement = 0f;
     private float initialRotationY = 0f;
+
+    public bool isButtonPressed;
 
     [Header("Output")]
     public float currentInclination; // Valor expuesto para otros scripts
@@ -53,34 +55,47 @@ public class PlayerGyro : MonoBehaviour
                 string value = serialPort.ReadLine();
                 string[] data = value.Split(',');
 
-                if (data.Length == 8 && float.TryParse(data[3], out float rotationY))
+                if (data.Length == 8) // Asegurarse de que la longitud sea exactamente 8
                 {
-                    if (initialRotationY == 0f) initialRotationY = rotationY;
-
-                    float deltaRotationY = rotationY - initialRotationY;
-                    deltaRotationY = Mathf.Clamp(deltaRotationY, -180f, 180f);
-
-                    // Suavizado exponencial para rotación más suave
-                    smoothedRotationY = Mathf.Lerp(smoothedRotationY, deltaRotationY, smoothingFactor);
-
-                    if (Mathf.Abs(smoothedRotationY) > rotationThreshold)
+                    if (float.TryParse(data[3], out float rotationY))
                     {
-                        currentInclination = smoothedRotationY * sensitivity;
-                        timeSinceLastMovement = 0f;
-                    }
-                    else
-                    {
-                        timeSinceLastMovement += Time.deltaTime;
+                        // Procesar rotación
+                        if (initialRotationY == 0f) initialRotationY = rotationY;
+
+                        float deltaRotationY = rotationY - initialRotationY;
+                        deltaRotationY = Mathf.Clamp(deltaRotationY, -180f, 180f);
+
+                        smoothedRotationY = Mathf.Lerp(smoothedRotationY, deltaRotationY, smoothingFactor);
+
+                        if (Mathf.Abs(smoothedRotationY) > rotationThreshold)
+                        {
+                            currentInclination = smoothedRotationY * sensitivity;
+                            timeSinceLastMovement = 0f;
+                        }
+                        else
+                        {
+                            timeSinceLastMovement += Time.deltaTime;
+                        }
+
+                        if (timeSinceLastMovement >= resetTime)
+                        {
+                            currentInclination = 0f;
+                            timeSinceLastMovement = 0f;
+                        }
+
+                        previousRotationY = smoothedRotationY;
                     }
 
-                    if (timeSinceLastMovement >= resetTime)
+                    if (int.TryParse(data[7], out int buttonState)) // Cambiado de data[8] a data[7]
                     {
-                        currentInclination = 0f;
-                        timeSinceLastMovement = 0f;
+                        isButtonPressed = buttonState == 1; // Asigna true si es 1
                     }
-                    
-                    previousRotationY = smoothedRotationY;
                 }
+                else
+                {
+                    Debug.LogWarning($"Datos inesperados recibidos: {value}");
+                }
+
             }
             catch (TimeoutException) { }
         }

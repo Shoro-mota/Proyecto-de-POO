@@ -11749,9 +11749,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 0.5
   smoothingFactor: 0.1
-  rotationThreshold: 0.2
+  rotationThreshold: 0.125
   resetTime: 1
   readInterval: 0.05
+  isButtonPressed: 0
   currentInclination: 0
 --- !u!114 &742170247
 MonoBehaviour:
@@ -11765,6 +11766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a469ddd424c0fb749a5a7d62c0427951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerGyro: {fileID: 0}
   playerSpeed: 4
   jumpForce: 8
   speedMultiplier: 2
