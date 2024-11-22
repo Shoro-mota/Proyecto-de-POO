@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections; // Necesario para la corutina
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float playerSpeed;
+    public float playerSpeed;  // Velocidad normal
     public float jumpForce;
-
+    public float speedMultiplier = 2f;  // Factor de multiplicación para la velocidad
     private bool isGrounded;
     private Rigidbody2D rb;
 
@@ -53,6 +54,29 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+    }
+
+    // Método para multiplicar la velocidad por un tiempo limitado (1 segundo)
+    private void BoostSpeed()
+    {
+        playerSpeed *= speedMultiplier;  // Aumenta la velocidad
+        StartCoroutine(ResetSpeedAfterDelay(1f));  // Llama a la corutina para restablecer la velocidad después de 1 segundo
+    }
+
+    // Corutina que espera un segundo y luego restaura la velocidad original
+    private IEnumerator ResetSpeedAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);  // Espera 1 segundo
+        playerSpeed /= speedMultiplier;  // Restaura la velocidad original
+    }
+
+    // Método que se activa al entrar en el trigger
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpeedBoost"))  // Asegúrate de que el trigger tenga el tag "SpeedBoost"
+        {
+            BoostSpeed();  // Llama al método que aumenta la velocidad
         }
     }
 }
