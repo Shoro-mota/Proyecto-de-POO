@@ -11516,6 +11516,7 @@ GameObject:
   - component: {fileID: 742170246}
   - component: {fileID: 742170247}
   - component: {fileID: 742170248}
+  - component: {fileID: 742170249}
   m_Layer: 3
   m_Name: skate
   m_TagString: Player
@@ -11744,11 +11745,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8a5a6c4a2335a4a99b88cbbb09dada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.3
-  smoothingFactor: 0.125
-  rotationThreshold: 0.2
+  sensitivity: 0.5
+  smoothingFactor: 0.1
+  rotationThreshold: 0.125
   resetTime: 1
-  readInterval: 0.1
+  readInterval: 0.05
   currentInclination: 0
 --- !u!114 &742170247
 MonoBehaviour:
@@ -11780,6 +11781,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posicionOrigen: {x: 1.47, y: -0.03, z: -10}
+--- !u!114 &742170249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742170238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeaccac36a79194cb73ffca20843191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 8
 --- !u!1 &748093295
 GameObject:
   m_ObjectHideFlags: 0
