@@ -78,7 +78,7 @@ public class PlayerGyro : MonoBehaviour
                         currentInclination = 0f;
                         timeSinceLastMovement = 0f;
                     }
-
+                    
                     previousRotationY = smoothedRotationY;
                 }
             }
