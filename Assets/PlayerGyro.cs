@@ -28,15 +28,17 @@ public class PlayerGyro : MonoBehaviour
 
     void Update()
     {
-        // Si la tecla CTRL está presionada, se resetean todos los ejes a 0
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            // Mantenemos la rotación en 0 mientras CTRL está presionado
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            // Ajuste progresivo del eje Z a 0
+            float currentZ = transform.rotation.eulerAngles.z;
+            if (currentZ > 180f) currentZ -= 360f; // Ajustamos el rango [-180, 180]
+            float adjustedZ = Mathf.MoveTowards(currentZ, 0f, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0f, 0f, adjustedZ);
         }
         else
         {
-            // Si no se presiona CTRL, leemos los datos del giroscopio
+            // Lectura del giroscopio
             if (serialPort.IsOpen)
             {
                 try
@@ -44,15 +46,12 @@ public class PlayerGyro : MonoBehaviour
                     string value = serialPort.ReadLine();
                     string[] data = value.Split(',');
 
-                    // Solo procesamos si los datos tienen el formato esperado
                     if (data.Length == 8 && float.TryParse(data[3], out float rotationY))
                     {
-                        if (initialRotationY == 0f)
-                        {
-                            initialRotationY = rotationY;
-                        }
+                        if (initialRotationY == 0f) initialRotationY = rotationY;
 
                         float deltaRotationY = rotationY - initialRotationY;
+                        deltaRotationY = Mathf.Clamp(deltaRotationY, -180f, 180f);
                         smoothedRotationY = Mathf.Lerp(previousRotationY, deltaRotationY, smoothingFactor);
 
                         if (Mathf.Abs(smoothedRotationY) > rotationThreshold)
@@ -76,17 +75,11 @@ public class PlayerGyro : MonoBehaviour
                 }
                 catch (TimeoutException) { }
             }
-
-            // Aplicamos la rotación calculada por el giroscopio (cuando no se presiona CTRL)
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, currentInclination);
         }
     }
 
     void OnApplicationQuit()
     {
-        if (serialPort.IsOpen)
-        {
-            serialPort.Close();
-        }
+        if (serialPort.IsOpen) serialPort.Close();
     }
 }
