@@ -5,8 +5,9 @@ using System.Collections;  // Agregado para IEnumerator
 
 public class PlayerGyro : MonoBehaviour
 {
-    SerialPort serialPort = new SerialPort("COM7", 9600);
+    SerialPort serialPort = new SerialPort("COM3", 9600);
 
+    public bool isButtonPressed { get; set; }
     [Header("Gyroscope Settings")]
     public float sensitivity = 0.5f;
     public float smoothingFactor = 0.1f; // Suavizado más sutil para evitar lag
@@ -80,6 +81,22 @@ public class PlayerGyro : MonoBehaviour
                     }
                     
                     previousRotationY = smoothedRotationY;
+                }
+                if (data.Length >= 8)
+                {
+                    if (int.TryParse(data[7], out int buttonState))
+                    {
+                        isButtonPressed = buttonState == 0 ? true : false; // Asigna true si el valor es 1
+                        Debug.Log($"Estado del botón: {isButtonPressed}");
+                        if (isButtonPressed)
+                        {
+                            Debug.Log("Botón presionado");
+                        }
+                        else
+                        {
+                            Debug.Log("Botón liberado");
+                        }
+                    }
                 }
             }
             catch (TimeoutException) { }
