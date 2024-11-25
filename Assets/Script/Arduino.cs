@@ -5,7 +5,7 @@ using System.IO.Ports;
 
 public class Arduino : MonoBehaviour
 {
-    SerialPort serialPort = new SerialPort("COM3", 9600);
+    SerialPort serialPort = new SerialPort("COM5", 9600);
     public float rotacionFactor = 1.0f;
     private string[] datos;
     private float rotacionY;
@@ -41,13 +41,14 @@ public class Arduino : MonoBehaviour
                 {
                     rotacionY = rotationY;
                     transform.Rotate(0, 0, rotacionY * rotacionFactor);
-
+                    
                 }
                 if (float.TryParse(datos[7], out float button))
                 {
                     boton = (button == 0f); // 0 significa botón presionado
                 }
             }
+
         }
     }
 
