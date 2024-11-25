@@ -10,13 +10,14 @@ public class Arduino : MonoBehaviour
     private string[] datos;
     private float rotacionY;
     public bool boton;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         serialPort.Open();
         serialPort.ReadTimeout = 100;
+
     }
 
     // Update is called once per frame
@@ -34,18 +35,17 @@ public class Arduino : MonoBehaviour
             {
                 // throw;
             }
-            if (datos.Length <= 8) {   // Si no hay datos, salimos
+            if (datos.Length >= 8) // Asegúrate de que el array tiene al menos 8 elementos
+            {
                 if (float.TryParse(datos[3], out float rotationY))
                 {
-                    // Si la conversión es exitosa, lo usamos
                     rotacionY = rotationY;
-                    transform.Rotate(0, 0, rotacionY* rotacionFactor);
+                    transform.Rotate(0, 0, rotacionY * rotacionFactor);
 
                 }
                 if (float.TryParse(datos[7], out float button))
                 {
-                    // Si la conversión es exitosa, lo usamos
-                    boton = (button == 0f);  // Si button es 0, boton será true, si es 1, será false porque en el arduino boton no presionado siempre es 1
+                    boton = (button == 0f); // 0 significa botón presionado
                 }
             }
         }
@@ -55,6 +55,8 @@ public class Arduino : MonoBehaviour
     {
         get { return boton; }
     }
+
+
 
     void OnApplicationQuit()
     {

@@ -25,8 +25,14 @@ public class GameController : MonoBehaviour
         {
             Jump();
         }
+
+    }
+
+    void FixedUpdate()
+    {
         rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
     }
+
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
