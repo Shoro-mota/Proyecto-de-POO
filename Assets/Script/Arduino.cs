@@ -35,12 +35,12 @@ public class Arduino : MonoBehaviour
             {
                 // throw;
             }
-            if (datos.Length >= 8) // Asegúrate de que el array tiene al menos 8 elementos
+            if (datos.Length <= 8) // Asegúrate de que el array tiene al menos 8 elementos
             {
-                if (float.TryParse(datos[3], out float rotationY))
+                if (float.TryParse(datos[1], out float rotationY))
                 {
                     rotacionY = rotationY;
-                    transform.Rotate(0, 0, rotacionY * rotacionFactor);
+                    transform.Rotate(0, 0, (rotacionY * rotacionFactor)*-1);
                     
                 }
                 if (float.TryParse(datos[7], out float button))
