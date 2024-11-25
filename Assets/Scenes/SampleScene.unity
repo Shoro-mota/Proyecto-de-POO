@@ -11516,9 +11516,8 @@ GameObject:
   - component: {fileID: 742170243}
   - component: {fileID: 742170242}
   - component: {fileID: 742170241}
-  - component: {fileID: 742170246}
-  - component: {fileID: 742170247}
   - component: {fileID: 742170248}
+  - component: {fileID: 742170249}
   m_Layer: 3
   m_Name: skate
   m_TagString: Player
@@ -11735,41 +11734,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &742170246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742170238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8a5a6c4a2335a4a99b88cbbb09dada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 0.5
-  smoothingFactor: 0.1
-  rotationThreshold: 0.2
-  resetTime: 1
-  readInterval: 0.05
-  currentInclination: 0
---- !u!114 &742170247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742170238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a469ddd424c0fb749a5a7d62c0427951, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 4
-  jumpForce: 8
-  speedMultiplier: 2
-  gyro: {fileID: 742170246}
-  maxTiltAngle: 45
 --- !u!114 &742170248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11783,6 +11747,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posicionOrigen: {x: 1.47, y: -0.03, z: -10}
+--- !u!114 &742170249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742170238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e926bebc3b9a2418dd815c5ee0221b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748093295
 GameObject:
   m_ObjectHideFlags: 0
@@ -13102,6 +13078,10 @@ GameObject:
   - component: {fileID: 815205366}
   - component: {fileID: 815205367}
   - component: {fileID: 815205368}
+  - component: {fileID: 815205372}
+  - component: {fileID: 815205371}
+  - component: {fileID: 815205370}
+  - component: {fileID: 815205369}
   m_Layer: 6
   m_Name: calle
   m_TagString: Ground
@@ -13248,6 +13228,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 77.36153, y: 0.14501053}
   m_EdgeRadius: 0
+--- !u!114 &815205369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815205364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02578bca2d569d54ea503726fd8beeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gyroscopeHandler: {fileID: 0}
+  rotacionFactor: 1
+--- !u!114 &815205370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815205364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70d9b9fea005ff4da0036a3c146a4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  igyroscope: {fileID: 0}
+  rotacionY: 0
+  boton: 0
+--- !u!114 &815205371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815205364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5b13f0dce7cc84bb9549d19a00c686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceReader: {fileID: 742170249}
+--- !u!114 &815205372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815205364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e926bebc3b9a2418dd815c5ee0221b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &821244379
 GameObject:
   m_ObjectHideFlags: 0
