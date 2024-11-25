@@ -35,7 +35,7 @@ public class Arduino : MonoBehaviour
             {
                 // throw;
             }
-            if (datos.Length <= 8) // Asegúrate de que el array tiene al menos 8 elementos
+            if (datos.Length <= 8) // el array tiene al menos 8 elementos
             {
                 if (float.TryParse(datos[1], out float rotationY))
                 {
